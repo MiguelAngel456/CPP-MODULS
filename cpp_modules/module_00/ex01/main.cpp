@@ -6,7 +6,7 @@
 /*   By: mfuente- <mfuente-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 18:05:26 by mfuente-          #+#    #+#             */
-/*   Updated: 2024/08/12 17:09:53 by mfuente-         ###   ########.fr       */
+/*   Updated: 2024/08/19 13:46:00 by mfuente-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,9 +109,16 @@ void ft_search(PhoneBook *pb)
     pb->mostrarContenidoArray(8);
     do{
         std::getline(std::cin, imput);
-        num = ft_atoi(imput);
+        if (std::cin.eof() == true)
+			{
+				std::cout << "You Pressed ^D. Exiting phonebook now." << std::endl;
+                num = -1;
+				continue;
+			}
+        num = ft_atoi(imput);   
     }while(num < 0);
-    pb->info_contact(num);
+    if (num < 0)
+        pb->info_contact(num);
 }
 
 int main(int argc,char *argv[])
